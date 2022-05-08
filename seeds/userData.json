@@ -1,0 +1,17 @@
+[
+    {
+        "user_name": "Bill G",
+        "email": "OGBill@hotmail.com",
+        "password": "testpassword123"
+    },
+    {
+        "user_name": "Larry E",
+        "email": "larryEazyE@oracle.com",
+        "password": "testpassword123"
+    },
+    {
+        "user_name": "Dade M",
+        "email": "zerocool@gmail.com",
+        "password": "testpassword123",
+    }
+]
