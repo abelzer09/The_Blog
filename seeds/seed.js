@@ -14,8 +14,6 @@ const seedPosts = () => Post.bulkCreate(postInfo, {
     returning: true,
   });
 
-
-
 const seedAllData = async () => {
   await sequelize.sync({ force: true });
 
