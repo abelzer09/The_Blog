@@ -10,6 +10,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/main', async (req, res) => {
+    try {
+        res.render('allpost')
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
 router.get('/login', async (req, res) => {
     try {
         res.render('login')
