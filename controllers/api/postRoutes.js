@@ -16,7 +16,7 @@ router.post('/', withAuth, async (req, res) => {
     }
   });
 
-  router.put('/:id', withAuth, async (req, req) => {
+  router.put('/:id', withAuth, async (res, req) => {
       try {
           const postInfo = await Post.findOne({where:{id:req.params.id, 
             user_id: req.session.user_id,}})

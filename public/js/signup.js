@@ -1,15 +1,15 @@
 const form = document.querySelector('.signup')
-function submitForm(event){
+ async function submitForm(event){
     event.preventDefault()
-    const userData = document.querySelector("#username")
-    const emailData = document.querySelector('#email')
-    const passwordData = document.querySelector('#password')
+    const username = document.querySelector("#username").value.trim()
+    const email = document.querySelector('#email').value.trim()
+    const password = document.querySelector('#password').value.trim()
     const response = await fetch('/api/user', {
         method: "POST",
         body: JSON.stringify({
-            username: userData.value,
-            email: emailData.value,
-            password: passwordData.value
+            username,
+            email,
+            password,
         }),
         headers: {
             "content-type": "application/json"
