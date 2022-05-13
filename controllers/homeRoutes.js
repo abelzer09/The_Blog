@@ -1,18 +1,39 @@
 const router = require('express').Router();
+const { response } = require('express');
 const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    try{
-        res.render("allpost")
-    } catch (err) {
-        res.status(500).json(err)
-    }
+    try {
+        const postData = await Post.findAll({
+          include: [User],
+        });
+    
+        const posts = postData.map((post) => post.get({ plain: true }));
+    
+        res.render('allpost', { posts });
+      } catch (err) {
+        res.status(500).json(err);
+      }
 });
 
-router.get('/main', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
     try {
-        res.render('allpost')
+        const postData = await Post.findByPk(req.params.id, {
+            include: [
+                User, 
+                {
+                    model: Comment,
+                    include: [User]
+                }
+            ]
+        })
+        if (postData){
+            const post = postData.get({plain: true})
+            res.render('singlepost', {Post})
+        } else {
+            res.status(404).end()
+        }
     } catch (err) {
         res.status(500).json(err)
     }
@@ -20,7 +41,12 @@ router.get('/main', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     try {
-        res.render('login')
+        if (req.session.logged_in) {
+            res.redirect('/')
+        }
+        else {
+            res.render('login')
+        }
     } catch (err) {
         res.status(500).json(err)
     }
@@ -28,7 +54,12 @@ router.get('/login', async (req, res) => {
 
 router.get('/signup', async (req, res) => {
     try{
-        res.render("signup")
+        if (req.session.logged_in) {
+            res.redirect('/')
+        }
+        else {
+            res.render('signup')
+        }
     } catch (err) {
         res.status(500).json(err)
     }
