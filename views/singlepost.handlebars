@@ -12,7 +12,7 @@
   </article>
 
   {{#if post.Comments}}
-    <section ">
+    <section >
       <div>
         <h3>Comments</h3>
       </div>
@@ -32,16 +32,18 @@
     </section>
   {{/if}}
 
-  <form>
+  <form class="comment">
     <div>
       <h3>Add New Comment</h3>
     </div>
 
     <div class="card-body">
       <input name="post-id" value="{{post.id}}" />
-      <label>Comment</label>
-      <textarea ></textarea>
-      <button>Submit</button>
+      <div class="mb-3">
+        <label for="Textarea" class="form-label">Text goes here</label>
+        <textarea class="form-control" id="newComment" rows="3"></textarea>
+    </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>
 </div>
