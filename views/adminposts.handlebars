@@ -1,6 +1,17 @@
 <div>
-    {{#each posts}}
-    <p>{{title}}title</p>
-    <p>{{user.username}}</p>
-    {{/each}}
+  {{#each posts}}
+  <div>
+    <div >
+      <h2>
+        <a href="/post/{{id}}">{{title}}</a>
+      </h2>
+      <div>
+        Posted by {{user.username}} on {{dateCreated}}
+      </div>
+    </div>
+    <div >
+      {{description}}
+    </div>
+  </div>
+  {{/each}}
 </div>

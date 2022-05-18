@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 const commentForm = document.querySelector('.comment')
 
 async function submitCommentForm(event){
@@ -7,7 +5,7 @@ async function submitCommentForm(event){
     const comment = document.querySelector('#newComment').value.trim();
     
     if (comment == '') {
-        return response.json({message: "must add a comment"})
+        return res.json({message: "must add a comment"})
     } else {
         const res = await fetch('/api/comment', {
             method: 'POST',
@@ -21,7 +19,7 @@ async function submitCommentForm(event){
         if (res.ok) {
             document.location.replace('/dashboard')
         } else {
-            alert(response.statusText)
+            alert(res.statusText)
         }
     }
 };
